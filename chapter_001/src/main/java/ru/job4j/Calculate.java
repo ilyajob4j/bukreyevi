@@ -13,14 +13,11 @@ package ru.job4j;
 */
 
 public class Calculate {
-	int result;
 	/**
-	* addition, takes two arguments and assigns
-	* result to variable "result"
-	* @param a - first argument
-	* @param b - second argument
+	* main
+	* @param - String args []
 	*/
-	void addition (int a, int b) {
-		result = a + b;
+	public static void main (String [] args) {
+		System.out.print ("Hello World!");
 	}
 }
