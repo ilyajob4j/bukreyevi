@@ -8,7 +8,7 @@ Point class.
 @since 23/03/2017
 @author Bukreyev Ilya
 */
-class Point {
+public class Point {
   /**
   @param x - first coordinate of Point
   */
@@ -21,7 +21,7 @@ class Point {
   @param x - first coordinate of Point (constructor)
   @param y - second coordinate of Point (constructor)
   */
-  Point(int x, int y) {
+  public Point(int x, int y) {
     this.x = x;
     this.y = y;
   }
