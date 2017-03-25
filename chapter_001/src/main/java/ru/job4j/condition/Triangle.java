@@ -2,6 +2,7 @@
 Triangle package.
 */
 package ru.job4j.condition;
+
 /**
 Triangle class.
 */
@@ -33,12 +34,12 @@ Triangle(Point a, Point b, Point c) {
   @return Triangle S or exception if points leads on line.
   */
   public double area() {
-    if (((a.getX() - c.getX()) * (b.getY() - c.getY()) - (b.getX()
-     - c.getX()) * (a.getY() - c.getY())) == 0) {
-    return -1;
-    } else {
-    return (((a.getX() - c.getX()) * (b.getY() - c.getY()) - (b.getX()
+    double result = Math.abs(((a.getX() - c.getX()) * (b.getY() - c.getY()) - (b.getX()
     - c.getX()) * (a.getY() - c.getY())) / 2);
+    if (result == 0) {
+      return -1;
+    } else {
+      return result;
     }
   }
 }
