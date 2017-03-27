@@ -1,0 +1,3 @@
+/**
+package info test
+*/
