@@ -18,6 +18,6 @@ public class BubbleSortTest {
     BubbleSort obj = new BubbleSort();
     int[] result = obj.sort(new int[] {5, 1, 2, 7, 3});
     int[] expected = {1, 2, 3, 5, 7};
-    assertThat(expected, is(result));
+    assertThat(result, is(expected));
   }
 }
