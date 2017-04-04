@@ -16,8 +16,8 @@ public class ArrayGlueTest {
   @Test
   public void glueArraysAndSort() {
     ArrayGlue obj = new ArrayGlue();
-    int[] result = obj.glueArrays(new int[] {1, 2, 3, 6}, new int[] {1, 3, 4});
-    int[] expected = {1, 1, 2, 3, 3, 4, 6};
+    int[] result = obj.glueArrays(new int[] {1, 2, 5}, new int[] {2, 3, 4, 6});
+    int[] expected = {1, 2, 2, 3, 4, 5, 6};
     assertThat(result, is(expected));
   }
 }
