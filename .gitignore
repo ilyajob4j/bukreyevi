@@ -12,3 +12,8 @@ I*.class
 hs_err_pid*
 target/
 out/
+
+# personal excludings
+.idea
+*.iml
+target
