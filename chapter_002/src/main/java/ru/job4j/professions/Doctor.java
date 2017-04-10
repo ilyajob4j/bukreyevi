@@ -1,20 +1,31 @@
 /**
-package-info.
-*/
+ * package-info.
+ */
 package ru.job4j.professions;
-/**
-class info.
-*/
-public class Doctor extends Profession {
-  boolean hasResearch;
 
-  public String heal(String client) {
-    System.out.println("Doctor "+name+" heals "+client);
-  }
-  public void giveAdvice() {
-    System.out.println("Doctor gives advise to client");
-  }
-  public void shakeHand() {
-    System.out.println("Doctor shakes your hand");
-  }
+/**
+ * class info.
+ */
+public class Doctor extends Profession {
+    private boolean hasResearch;
+
+    public void heal(String client) {
+        if (hasResearch) {
+            System.out.println("Doctor " + getName() + " heals " + client);
+        } else {
+            System.out.println("Not enough qualification");
+        }
+    }
+
+    public void giveAdvice() {
+        if (isHighEducated()) {
+            System.out.println("Doctor" + getName() + "gives advise to client");
+        } else {
+            System.out.println("Not enough qualification");
+        }
+    }
+
+    public void shakeHand() {
+        System.out.println("Doctor shakes your hand");
+    }
 }
