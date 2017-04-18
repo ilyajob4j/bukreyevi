@@ -15,18 +15,6 @@ private String id;
  */
 private String name;
 /**
-   @param desc - description.
- */
-private String desc;
-/**
-   @param created - created date and time.
- */
-private long created;
-/**
-   @param comments - some text.
- */
-private String[] comments;
-/**
    @return id getter.
  */
 public String getId() {
@@ -45,13 +33,9 @@ public void setName(String s) {
         this.name = s;
 }
 /**
-   @return gettet of name.
+   @return getter of name.
  */
 public String getName() {
         return this.name;
 }
-/**
-   @param obj desc.
-   @return desc.
- */
 }
