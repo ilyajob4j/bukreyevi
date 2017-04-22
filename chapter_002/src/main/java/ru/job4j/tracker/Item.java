@@ -38,4 +38,7 @@ public void setName(String s) {
 public String getName() {
         return this.name;
 }
+public String toString() {
+        return "Name is "+name+"Id is "+id;
+}
 }
