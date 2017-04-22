@@ -1,13 +1,17 @@
 /**
-   package-info
+   package-info.
  */
 package ru.job4j.tracker;
 /**
-   class info
+   class info.
  */
 public class StartUI {
-public staic void main(String[] args) {
+/**
+   main.
+   @param args - arguments.
+ */
+public static void main(String[] args) {
         ConsoleInput obj = new ConsoleInput();
-        obj.start;
+        obj.start();
 }
 }

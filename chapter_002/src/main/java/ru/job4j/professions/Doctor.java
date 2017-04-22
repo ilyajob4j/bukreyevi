@@ -40,5 +40,6 @@ public class Doctor extends Profession {
     */
     public String slogan() {
         return "Doctor " + getName() + " says " + "\"Na boga nadeyasya, a sam ne boley\"";
+
     }
 }

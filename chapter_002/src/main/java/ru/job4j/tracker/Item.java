@@ -38,7 +38,10 @@ public void setName(String s) {
 public String getName() {
         return this.name;
 }
+/**
+   @return toString override.
+ */
 public String toString() {
-        return "Name is "+name+"Id is "+id;
+        return "Name is " + name + "Id is " + id;
 }
 }
