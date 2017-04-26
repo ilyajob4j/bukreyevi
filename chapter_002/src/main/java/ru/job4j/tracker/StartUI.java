@@ -3,57 +3,122 @@
  */
 package ru.job4j.tracker;
 
-import java.util.Scanner;
-
 /**
  * class info.
  */
+
 public class StartUI {
 /**
-   @param b keeps dialog alive.
+ * @param b keeps dialog alive.
  */
 private static boolean b = true;
+
+/**
+ * enum class.
+ */
+public enum TrackerMenu {
+        /**
+           add.
+         */
+        ADD("1"),
+        /**
+           update.
+         */
+        UPDATE("2"),
+        /**
+           delete.
+         */
+        DELETE("3"),
+        /**
+           FIND_ALL.
+         */
+        FIND_ALL("4"),
+        /**
+           findby.
+         */
+        FIND_BY_ID("5"),
+        /**
+           find by name.
+         */
+        FIND_BY_NAME("6"),
+        /**
+           exit.
+         */
+        EXIT("0");
+        /**
+           @param i - field.
+         */
+        private String i;
+/**
+   @param i arguments.
+ */
+        TrackerMenu(String i) {
+                this.i = i;
+        }
+/**
+   @param id arguments
+   @return e obj
+ */
+        static TrackerMenu searchEnum(String id) {
+                for (TrackerMenu e : TrackerMenu.values()) {
+                        if (e.i.equals(id)) {
+                                return e;
+                        }
+                }
+                return null;
+        }
+}
+
 /**
  * main.
  *
  * @param args - arguments.
  */
 public static void main(String[] args) {
+        StartUI st = new StartUI();
+        st.init();
+}
+
+/**
+ * init method.
+ */
+private void init() {
+        Item item = new Item();
         ConsoleInput consoleInput = new ConsoleInput();
         Tracker tracker = new Tracker();
         while (b) {
-                String name = consoleInput.start("Добро пожаловать в систему заявок. Доступные варианты:\n1. Добавить заявку\n2. Обновить заявку (нужно указать обновляемый элемент)\n3. Удаление заявки по номеру\n4. Получить список всех заявок\n5. Найти заявку по названию\n6. Найти заявку по номеру\n0. Закончить работу с приложением\n Выберите вариант");
-                switch (name) {
-                case "1":
-                        tracker.add(setItemFromConsole());
-                        System.out.println("Добавили, возвращаемся в главное меню.");
+                String name = consoleInput.ask("Добро пожаловать в систему заявок. Доступные варианты:\n1. Добавить заявку\n2. Обновить заявку (нужно указать обновляемый элемент)\n3. Удаление заявки по номеру\n4. Получить список всех заявок\n5. Найти заявку по названию\n6. Найти заявку по номеру\n0. Закончить работу с приложением\n Выберите вариант");
+                TrackerMenu t = StartUI.TrackerMenu.searchEnum(name);
+                switch (t) {
+                case ADD:
+                        item.setName(consoleInput.ask("Введите имя заявки"));
+                        tracker.add(item);
                         break;
-                case "2":
-                        tracker.update(setItemFromConsole());
+                case UPDATE:
+//                    tracker.update();
                         System.out.println("Обновили, возвращаемся в главное меню.");
                         break;
-                case "3":
-                        System.out.println("Укажите номер заявки для удаления");
-                        tracker.delete(tracker.getItemId(userIntInput()));
+                case DELETE:
+                        tracker.delete(tracker.getItemId(new Integer(consoleInput.ask("Укажите номер заявки для удаления"))));
                         System.out.println("Удаление наверное произошло, возвращаемся в главное меню");
                         break;
-                case "4":
+                case FIND_ALL:
                         for (Item i : tracker.findAll()) {
                                 System.out.print(i + ",");
                         }
                         System.out.println("\nНапечатали, возвращаемся в главное меню.");
                         break;
-                case "5":
-                        for (Item i : tracker.findByName(userStringInput())) {
+                case FIND_BY_ID:
+                        for (Item i : tracker.findByName(consoleInput.ask("Введите Name"))) {
                                 System.out.println(i + ",");
                         }
                         System.out.println("\nНапечатали, возвращаемся в главное меню.");
                         break;
-                case "6":
-                        System.out.println(tracker.findById(userStringInput()));
+                case FIND_BY_NAME:
+                        System.out.println(tracker.findById(consoleInput.ask("Введите ID")));
                         System.out.println("Напечатали, возвращаемся в главное меню.");
                         break;
-                case "0":
+                case EXIT:
                         System.out.println("До новых встреч!");
                         b = false;
                         break;
@@ -61,35 +126,5 @@ public static void main(String[] args) {
                         System.out.println("Введен недопустимый вариант");
                 }
         }
-}
-
-/**
- * user string input.
- *
- * @return string input.
- */
-private static String userStringInput() {
-        Scanner ss = new Scanner(System.in);
-        return ss.next();
-}
-
-/**
- * user num input.
- *
- * @return int input.
- */
-private static int userIntInput() {
-        Scanner s = new Scanner(System.in);
-        return s.nextInt();
-}
-
-/**
- * @return specified by user item.
- */
-private static Item setItemFromConsole() {
-        System.out.println("Введите имя заявки");
-        Item item = new Item();
-        item.setName(userStringInput());
-        return item;
 }
 }
