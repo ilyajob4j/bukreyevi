@@ -2,6 +2,7 @@
    package-info.
  */
 package ru.job4j.tracker;
+
 /**
    class info.
  */
@@ -42,6 +43,17 @@ public String getName() {
    @return toString override.
  */
 public String toString() {
-        return "Name is " + name + "Id is " + id;
+        return "Name is " + name + " Id is " + id;
 }
+
+// @Override
+// public boolean equals(Object obj) {
+//         Item item = (Item) obj;
+//         return this.getName().equals(item.getName());
+// }
+//
+// @Override
+// public int hashCode() {
+//         return super.hashCode();
+// }
 }

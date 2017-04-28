@@ -46,27 +46,22 @@ public void deleteItem() {
         assertNull(tracker.getById(0));
 }
 /**
-   Создаем объект класса Item и устанавливаем значение поля равное "Bob". Создаем
-   обект класса Tracker и добавляем в него этот элемент, запоминаем id добавленного
-   объекта. Создаем новый объект класса Item и задаем новое имя "Kyzya", присваиваем
-   этому объекту такой же Id, как у "Bob". Вызываем метод update и передаем в него
-   второй объект, который обновит уже существующий объект по полю Name. Проверяем,
-   что в массиве поле name у изначального объекта изменилось на "Kyzya".
+   Описание поменялось.
  */
 @Test
 public void updateItem() {
         Item itemA = new Item();
-        itemA.setName("Bob");
-
+        itemA.setName("Kyzya");
         Tracker tracker = new Tracker();
         tracker.add(itemA);
-        String y = itemA.getId();
 
         Item itemB = new Item();
-        itemB.setName("Kyzya");
-        itemB.setId(y);
-        tracker.update(itemB);
-        assertEquals("Kyzya", tracker.getById(0).getName());
+        itemB.setName("Bob");
+
+        String y = "Kyzya";
+
+        tracker.update(itemA, y);
+        assertEquals(itemA.getName(), tracker.getById(0).getName());
 }
 /**
    Выдать все не пустые ячейки. Сравнить, что полученные результаты соответствуют

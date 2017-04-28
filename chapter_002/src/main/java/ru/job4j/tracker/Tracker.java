@@ -45,10 +45,11 @@ public Item add(Item item) {
 }
 /**
    @param item updates this item.
+   @param searchByName finds item to update.
  */
-public void update(Item item) {
+public void update(Item item, String searchByName) {
         for (int i = 0; i < items.length; i++) {
-                if (items[i] != null && items[i].getId().equals(item.getId())) {
+                if (items[i] != null && items[i].getName().equals(searchByName)) {
                         items[i] = item;
                         break;
                 }
