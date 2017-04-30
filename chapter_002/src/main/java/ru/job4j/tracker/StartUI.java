@@ -2,29 +2,29 @@
  * package-info.
  */
 package ru.job4j.tracker;
+
 /**
  * class info.
  */
 public class StartUI {
 /**
-   @param input new input.
+ * @param input new input.
  */
 private Input input;
+
 /**
-   @param tracker new tracker
+ * constructor.
+   @param input new input.
  */
-private Tracker tracker;
-/**
-   constructor.
- */
-private StartUI() {
+StartUI(Input input) {
         this.input = new ConsoleInput();
-        this.tracker = new Tracker();
 }
+
 /**
  * @param b keeps dialog alive.
  */
 private static boolean b = true;
+
 /**
  * enum class.
  */
@@ -61,12 +61,14 @@ public enum TrackerMenu {
          * @param i - field.
          */
         private String i;
+
         /**
          * @param i arguments.
          */
         TrackerMenu(String i) {
                 this.i = i;
         }
+
         /**
          * @param id arguments
          * @return e obj
@@ -80,19 +82,23 @@ public enum TrackerMenu {
                 return null;
         }
 }
+
 /**
  * main.
+ *
  * @param args - arguments.
  */
 public static void main(String[] args) {
-        StartUI st = new StartUI();
-        st.init();
+//        Input input = new ConsoleInput();
+        new StartUI(new StubInput(new String[] {"1", "test", "0"})).init();
 }
+
 /**
  * init method.
  */
-private void init() {
+void init() {
         while (b) {
+                Tracker tracker = new Tracker();
                 String menu = input.ask("Добро пожаловать в систему заявок. Доступные варианты:\n1. Добавить заявку\n2. Обновить заявку (нужно указать обновляемый элемент)\n3. Удаление заявки по номеру\n4. Получить список всех заявок\n5. Найти заявку по названию\n6. Найти заявку по номеру\n0. Закончить работу с приложением\n Выберите вариант");
                 TrackerMenu t = StartUI.TrackerMenu.searchEnum(menu);
                 switch (t) {
@@ -134,6 +140,7 @@ private void init() {
                         break;
                 default:
                         System.out.println("Введен недопустимый вариант");
+                        break;
                 }
         }
 }
