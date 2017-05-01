@@ -30,10 +30,10 @@ public void addTest1() {
  */
 @Test
 public void updateTest() {
-        Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[] {"1", "test name", "2", "trampampam", "test name", "0"});
-        new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("trampampam"));
+        Tracker tracker1 = new Tracker();
+        Input input1 = new StubInput(new String[] {"1", "test name", "2", "trampampam", "test name", "0"});
+        new StartUI(input1, tracker1).init();
+        assertThat(tracker1.findAll()[0].getName(), is("trampampam"));
 }
 /**
    Тестируем удаление.

@@ -29,7 +29,7 @@ StartUI(Input input, Tracker tracker) {
 /**
  * @param b keeps dialog alive.
  */
-private static boolean b = true;
+private boolean b = true;
 
 /**
  * enum class.
