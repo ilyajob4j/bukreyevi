@@ -11,13 +11,19 @@ public class StartUI {
  * @param input new input.
  */
 private Input input;
+/**
+   new tracker.
+ */
+private Tracker tracker;
 
 /**
  * constructor.
    @param input new input.
+   @param tracker new tracker.
  */
-StartUI(Input input) {
-        this.input = new ConsoleInput();
+StartUI(Input input, Tracker tracker) {
+        this.input = input;
+        this.tracker = tracker;
 }
 
 /**
@@ -89,8 +95,9 @@ public enum TrackerMenu {
  * @param args - arguments.
  */
 public static void main(String[] args) {
-//        Input input = new ConsoleInput();
-        new StartUI(new StubInput(new String[] {"1", "test", "0"})).init();
+        Input input = new ConsoleInput();
+        Tracker tracker = new Tracker();
+        new StartUI(input, tracker).init();
 }
 
 /**
@@ -98,7 +105,6 @@ public static void main(String[] args) {
  */
 void init() {
         while (b) {
-                Tracker tracker = new Tracker();
                 String menu = input.ask("Добро пожаловать в систему заявок. Доступные варианты:\n1. Добавить заявку\n2. Обновить заявку (нужно указать обновляемый элемент)\n3. Удаление заявки по номеру\n4. Получить список всех заявок\n5. Найти заявку по названию\n6. Найти заявку по номеру\n0. Закончить работу с приложением\n Выберите вариант");
                 TrackerMenu t = StartUI.TrackerMenu.searchEnum(menu);
                 switch (t) {
