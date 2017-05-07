@@ -8,6 +8,7 @@ package ru.job4j.tracker;
 interface IUserAction {
 /**
    method key.
+   @return return
  */
 int key();
 /**
@@ -18,6 +19,7 @@ int key();
 void execute(Input input, Tracker tracker);
 /**
    method info.
+   @return info.
  */
 String info();
 }
