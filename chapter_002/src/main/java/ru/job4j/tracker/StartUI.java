@@ -7,34 +7,35 @@ package ru.job4j.tracker;
  * class info.
  */
 public class StartUI {
-/**
- * @param input new input.
- */
-private Input input;
-/**
-   new tracker.
- */
-private Tracker tracker;
+    /**
+     * input new input.
+     */
+    private Input input;
+    /**
+     * new tracker.
+     */
+//    private Tracker tracker;
 
-/**
- * constructor.
-   @param input new input.
-   @param tracker new tracker.
- */
-StartUI(Input input, Tracker tracker) {
+    /**
+     * constructor.
+     *
+     * @param input   new input.
+     * @param tracker new tracker.
+     */
+    StartUI(Input input, Tracker tracker) {
         this.input = input;
-        this.tracker = tracker;
-}
+//        this.tracker = tracker;
+    }
 
-/**
- * @param b keeps dialog alive.
- */
-private boolean b = true;
+    /**
+     * @param b keeps dialog alive.
+     */
+    private boolean b = true;
 
-/**
- * enum class.
- */
-public enum TrackerMenu {
+    /**
+     * enum class.
+     */
+    public enum TrackerMenu {
         /**
          * add.
          */
@@ -64,7 +65,7 @@ public enum TrackerMenu {
          */
         EXIT("0");
         /**
-         * @param i - field.
+         * i - field.
          */
         private String i;
 
@@ -72,7 +73,7 @@ public enum TrackerMenu {
          * @param i arguments.
          */
         TrackerMenu(String i) {
-                this.i = i;
+            this.i = i;
         }
 
         /**
@@ -80,74 +81,37 @@ public enum TrackerMenu {
          * @return e obj
          */
         static TrackerMenu searchEnum(String id) {
-                for (TrackerMenu e : TrackerMenu.values()) {
-                        if (e.i.equals(id)) {
-                                return e;
-                        }
+            for (TrackerMenu e : TrackerMenu.values()) {
+                if (e.i.equals(id)) {
+                    return e;
                 }
-                return null;
+            }
+            return null;
         }
-}
+    }
 
-/**
- * main.
- *
- * @param args - arguments.
- */
-public static void main(String[] args) {
+    /**
+     * main.
+     *
+     * @param args - arguments.
+     */
+    public static void main(String[] args) {
         Input input = new ConsoleInput();
-        Tracker tracker = new Tracker();
-        new StartUI(input, tracker).init();
-}
+        new StartUI(input, null).init();
+    }
 
-/**
- * init method.
- */
-void init() {
-        while (b) {
-                String menu = input.ask("Добро пожаловать в систему заявок. Доступные варианты:\n1. Добавить заявку\n2. Обновить заявку (нужно указать обновляемый элемент)\n3. Удаление заявки по номеру\n4. Получить список всех заявок\n5. Найти заявку по названию\n6. Найти заявку по номеру\n0. Закончить работу с приложением\n Выберите вариант");
-                TrackerMenu t = StartUI.TrackerMenu.searchEnum(menu);
-                switch (t) {
-                case ADD:
-                        Item item = new Item();
-                        item.setName(input.ask("Введите имя заявки"));
-                        tracker.add(item);
-                        break;
-                case UPDATE:
-                        Item item2 = new Item();
-                        item2.setName(input.ask("Введите имя новой заявки"));
-                        String findItemByText = input.ask("Введите имя заявки, которую нужно обновить");
-                        tracker.update(item2, findItemByText);
-                        System.out.println("Обновили, возвращаемся в главное меню.");
-                        break;
-                case DELETE:
-                        tracker.delete(tracker.getItemId(new Integer(input.ask("Укажите номер заявки для удаления"))));
-                        System.out.println("Удаление наверное произошло, возвращаемся в главное меню");
-                        break;
-                case FIND_ALL:
-                        for (Item i : tracker.findAll()) {
-                                System.out.print(i + ",");
-                        }
-                        System.out.println("\nНапечатали, возвращаемся в главное меню.");
-                        break;
-                case FIND_BY_ID:
-                        for (Item i : tracker.findByName(input.ask("Введите Name"))) {
-                                System.out.println(i + ",");
-                        }
-                        System.out.println("\nНапечатали, возвращаемся в главное меню.");
-                        break;
-                case FIND_BY_NAME:
-                        System.out.println(tracker.findById(input.ask("Введите ID")));
-                        System.out.println("Напечатали, возвращаемся в главное меню.");
-                        break;
-                case EXIT:
-                        System.out.println("До новых встреч!");
-                        b = false;
-                        break;
-                default:
-                        System.out.println("Введен недопустимый вариант");
-                        break;
-                }
-        }
-}
+    /**
+     * init method.
+     */
+    void init() {
+        Tracker tracker = new Tracker();
+        MenuTracker menu = new MenuTracker(input, tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            String key = input.ask("\nSelect menu item: ");
+            menu.select(Integer.parseInt(key));
+
+        } while (!"y".equals(this.input.ask("Exit? y/n")));
+    }
 }
