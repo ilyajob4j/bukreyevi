@@ -21,8 +21,9 @@ public class StubInputTest {
     @Test
     public void addTest1() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test name", "y"});
+        Input input = new StubInput(new String[]{"0", "test name", "6"});
         new StartUI(input, tracker).init();
+        StartUI.b = true;
         assertEquals(tracker.getById(0).getName(), "test name");
     }
 
@@ -32,8 +33,9 @@ public class StubInputTest {
     @Test
     public void updateTest() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test name", "n", "2", "trampampam", "test name", "y"});
+        Input input = new StubInput(new String[]{"0", "test name", "2", "trampampam", "test name", "6"});
         new StartUI(input, tracker).init();
+        StartUI.b = true;
         assertThat(tracker.findAll()[0].getName(), is("trampampam"));
     }
 
@@ -43,8 +45,9 @@ public class StubInputTest {
     @Test
     public void deleteTest3() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test name", "n", "3", "0", "y"});
+        Input input = new StubInput(new String[]{"0", "test name", "3", "0", "6"});
         new StartUI(input, tracker).init();
+        StartUI.b = true;
         assertNull(tracker.getById(0));
     }
 
@@ -54,8 +57,9 @@ public class StubInputTest {
     @Test
     public void findAll4Test4() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test name", "n", "0", "test name2", "n", "1", "y"});
+        Input input = new StubInput(new String[]{"0", "test name",  "0", "test name2",  "1", "6"});
         new StartUI(input, tracker).init();
+        StartUI.b = true;
         assertThat(tracker.findAll()[0].getName(), is("test name"));
         assertThat(tracker.findAll()[1].getName(), is("test name2"));
     }
@@ -66,12 +70,12 @@ public class StubInputTest {
     @Test
     public void findByIdTest5() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test name", "y"});
+        Input input = new StubInput(new String[]{"0", "test name", "6"});
         new StartUI(input, tracker).init();
         String s = tracker.getById(0).getId();
-        Input input1 = new StubInput(new String[]{"4", s, "y"});
+        Input input1 = new StubInput(new String[]{"4", s, "6"});
         new StartUI(input1, tracker).init();
-
+        StartUI.b = true;
         assertEquals(tracker.getById(0).getId(), s);
     }
 
@@ -81,8 +85,9 @@ public class StubInputTest {
     @Test
     public void findByNameTest6() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test name", "n", "5", "test name", "y"});
+        Input input = new StubInput(new String[]{"0", "test name", "5", "test name", "6"});
         new StartUI(input, tracker).init();
+        StartUI.b = true;
         assertEquals(tracker.getById(0).getName(), "test name");
     }
 }

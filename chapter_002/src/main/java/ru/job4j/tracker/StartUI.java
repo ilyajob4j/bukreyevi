@@ -8,6 +8,11 @@ package ru.job4j.tracker;
  */
 public class StartUI {
     /**
+     * for while loop.
+     */
+    static boolean b = true;
+
+    /**
      * input new input.
      */
     private Input input;
@@ -43,11 +48,12 @@ public class StartUI {
     void init() {
         MenuTracker menu = new MenuTracker(input, tracker);
         menu.fillActions();
+        //noinspection InfiniteLoopStatement
         do {
             menu.show();
             String key = input.ask("\nSelect menu item: ");
             menu.select(Integer.parseInt(key));
 
-        } while (!"y".equals(this.input.ask("Exit? y/n")));
+        } while (b);
     }
 }
