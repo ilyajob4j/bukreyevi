@@ -25,3 +25,4 @@ class ConsoleInput implements Input {
         return scanner.next();
     }
 }
+//windows git test
