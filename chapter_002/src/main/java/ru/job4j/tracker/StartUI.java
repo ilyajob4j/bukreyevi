@@ -7,6 +7,7 @@ package ru.job4j.tracker;
  * class info.
  */
 public class StartUI {
+    int range [] = {0,1,2,3,4,5,6};
     /**
      * for while loop.
      */
@@ -37,7 +38,7 @@ public class StartUI {
      * @param args - arguments.
      */
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         new StartUI(input, tracker).init();
     }
@@ -48,12 +49,9 @@ public class StartUI {
     void init() {
         MenuTracker menu = new MenuTracker(input, tracker);
         menu.fillActions();
-        //noinspection InfiniteLoopStatement
         do {
             menu.show();
-            String key = input.ask("\nSelect menu item: ");
-            menu.select(Integer.parseInt(key));
-
+            menu.select(input.ask("\nSelect menu Item",range));
         } while (b);
     }
 }

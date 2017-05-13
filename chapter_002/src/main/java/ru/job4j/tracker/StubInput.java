@@ -19,7 +19,7 @@ public class StubInput implements Input {
     /**
      @param answers ans.
      */
-    public StubInput(String[] answers) {
+    StubInput(String[] answers) {
         this.answers = answers;
     }
 
@@ -30,5 +30,8 @@ public class StubInput implements Input {
 
     public String ask(String question) {
             return answers[counter++];
+    }
+    public int ask(String q, int [] range) {
+        throw new UnsupportedOperationException("lalala");
     }
 }

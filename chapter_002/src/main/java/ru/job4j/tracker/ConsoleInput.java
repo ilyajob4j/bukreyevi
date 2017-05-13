@@ -24,5 +24,20 @@ class ConsoleInput implements Input {
         System.out.println(text);
         return scanner.next();
     }
+
+    public int ask(String q, int[] range) {
+        int key = Integer.valueOf(this.ask(q));
+        boolean exist = false;
+        for (int value : range) {
+            if (value == key) {
+                exist = true;
+                break;
+            }
+        }
+        if (exist) {
+            return key;
+        } else {
+            throw new MenuException("Ошибка NFE");
+        }
+    }
 }
-//windows git test
