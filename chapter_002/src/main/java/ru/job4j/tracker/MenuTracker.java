@@ -62,6 +62,14 @@ public class MenuTracker {
         }
     }
 
+    public int[] fillerForRange() {
+        int[] result = new int[actions.length];
+        for (int x = 0; x < actions.length; x++) {
+            result[x] = x;
+        }
+        return result;
+    }
+
     /**
      * add item class.
      */

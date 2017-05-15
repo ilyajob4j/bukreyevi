@@ -7,7 +7,7 @@ package ru.job4j.tracker;
  * class info.
  */
 public class StartUI {
-    int range [] = {0,1,2,3,4,5,6};
+    int range [];
     /**
      * for while loop.
      */
@@ -49,6 +49,7 @@ public class StartUI {
     void init() {
         MenuTracker menu = new MenuTracker(input, tracker);
         menu.fillActions();
+        range = menu.fillerForRange();
         do {
             menu.show();
             menu.select(input.ask("\nSelect menu Item",range));
