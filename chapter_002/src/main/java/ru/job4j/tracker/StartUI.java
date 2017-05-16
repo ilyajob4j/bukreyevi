@@ -50,6 +50,23 @@ public class StartUI {
         MenuTracker menu = new MenuTracker(input, tracker);
         menu.fillActions();
         range = menu.fillerForRange();
+        IUserAction someAction = new IUserAction() {
+            @Override
+            public int key() {
+                return 8;
+            }
+
+            @Override
+            public void execute(Input input, Tracker tracker) {
+
+            }
+
+            @Override
+            public String info() {
+                return "Some action";
+            }
+        };
+        menu.addAction(someAction);
         do {
             menu.show();
             menu.select(input.ask("\nSelect menu Item",range));

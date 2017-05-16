@@ -6,7 +6,7 @@ package ru.job4j.tracker;
 /**
  * class info.
  */
-public class MenuTracker {
+class MenuTracker {
     /**
      * input info.
      */
@@ -19,6 +19,7 @@ public class MenuTracker {
      * actions actions.
      */
     private IUserAction[] actions = new IUserAction[7];
+    private int position = 0;
 
     /**
      * MenuTracker method.
@@ -26,7 +27,7 @@ public class MenuTracker {
      * @param input   in.
      * @param tracker tr.
      */
-    public MenuTracker(Input input, Tracker tracker) {
+    MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
@@ -34,27 +35,31 @@ public class MenuTracker {
     /**
      * @param key k.
      */
-    public void select(int key) {
+    void select(int key) {
         this.actions[key].execute(this.input, this.tracker);
     }
 
     /**
      * fills array with classes.
      */
-    public void fillActions() {
-        this.actions[0] = new AddItem();
-        this.actions[1] = new ShowItems();
-        this.actions[2] = new UpdateItem();
-        this.actions[3] = new DeleteItem();
-        this.actions[4] = new FindById();
-        this.actions[5] = new FindByName();
-        this.actions[6] = new Exiter();
+    void fillActions() {
+        this.actions[position++] = new MenuTracker.AddItem();
+        this.actions[position++] = new ShowItems();
+        this.actions[position++] = new UpdateItem();
+        this.actions[position++] = new DeleteItem();
+        this.actions[position++] = new FindById();
+        this.actions[position++] = new FindByName();
+        this.actions[position++] = new Exiter();
+    }
+
+    void addAction(IUserAction action) {
+        this.actions[position++] = action;
     }
 
     /**
      * show menu method.
      */
-    public void show() {
+    void show() {
         for (IUserAction action : this.actions) {
             if (action != null) {
                 System.out.println(action.info());
@@ -62,7 +67,7 @@ public class MenuTracker {
         }
     }
 
-    public int[] fillerForRange() {
+    int[] fillerForRange() {
         int[] result = new int[actions.length];
         for (int x = 0; x < actions.length; x++) {
             result[x] = x;
