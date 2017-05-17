@@ -43,13 +43,13 @@ class MenuTracker {
      * fills array with classes.
      */
     void fillActions() {
-        this.actions[position++] = new MenuTracker.AddItem();
-        this.actions[position++] = new ShowItems();
-        this.actions[position++] = new UpdateItem();
-        this.actions[position++] = new DeleteItem();
-        this.actions[position++] = new FindById();
-        this.actions[position++] = new FindByName();
-        this.actions[position++] = new Exiter();
+        this.actions[position++] = new MenuTracker.AddItem("Add Item");
+        this.actions[position++] = new ShowItems("Show Items");
+        this.actions[position++] = new UpdateItem("Update Item");
+        this.actions[position++] = new DeleteItem("Delete Item");
+        this.actions[position++] = new FindById("FindById");
+        this.actions[position++] = new FindByName("FindByName");
+        this.actions[position++] = new Exiter("Exit");
     }
 
     void addAction(IUserAction action) {
@@ -78,7 +78,12 @@ class MenuTracker {
     /**
      * add item class.
      */
-    private static class AddItem implements IUserAction {
+    private static class AddItem extends BaseAction {
+
+        AddItem(String actionName) {
+            super(actionName);
+        }
+
         /**
          * key for AddItem.
          *
@@ -99,21 +104,17 @@ class MenuTracker {
             item.setName(input.ask("Введите имя заявки"));
             tracker.add(item);
         }
-
-        /**
-         * info for add item.
-         *
-         * @return info
-         */
-        public String info() {
-            return String.format("%s. %s", this.key(), "add the new Item.");
-        }
     }
 
     /**
      * ShowItems class.
      */
-    private static class ShowItems implements IUserAction {
+    private static class ShowItems extends BaseAction {
+
+        ShowItems(String name) {
+            super(name);
+        }
+
         /**
          * key for ShowItems.
          *
@@ -137,21 +138,16 @@ class MenuTracker {
                 }
             }
         }
-
-        /**
-         * info for ShowItems.
-         *
-         * @return info
-         */
-        public String info() {
-            return String.format("%s. %s", this.key(), "show all items");
-        }
     }
 
     /**
      * class UpdateItem.
      */
-    private static class UpdateItem implements IUserAction {
+    private static class UpdateItem extends BaseAction {
+        UpdateItem(String actionName) {
+            super(actionName);
+        }
+
         /**
          * key method.
          *
@@ -173,21 +169,16 @@ class MenuTracker {
             String findItemByText = input.ask("Введите имя заявки, которую нужно обновить");
             tracker.update(item, findItemByText);
         }
-
-        /**
-         * info for UpdateItem.
-         *
-         * @return info
-         */
-        public String info() {
-            return String.format("%s. %s", this.key(), "updating item");
-        }
     }
 
     /**
      * DeleteItem.
      */
-    private class DeleteItem implements IUserAction {
+    private class DeleteItem extends BaseAction {
+        public DeleteItem(String actionName) {
+            super(actionName);
+        }
+
         /**
          * key for DeleteItem.
          *
@@ -206,21 +197,16 @@ class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             tracker.delete(tracker.getItemId(new Integer(input.ask("Укажите индекс для удаления"))));
         }
-
-        /**
-         * info for DeleteItem.
-         *
-         * @return info.
-         */
-        public String info() {
-            return String.format("%s. %s", this.key(), "deleting item");
-        }
     }
 
     /**
      * class FindById.
      */
-    private class FindById implements IUserAction {
+    private class FindById extends BaseAction {
+        public FindById(String actionName) {
+            super(actionName);
+        }
+
         /**
          * key for FindById.
          *
@@ -239,21 +225,16 @@ class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             tracker.findById(input.ask("Введите id заявки"));
         }
-
-        /**
-         * info for FindById.
-         *
-         * @return info
-         */
-        public String info() {
-            return String.format("%s. %s", this.key(), "Find by id");
-        }
     }
 
     /**
      * class FindByName.
      */
-    private class FindByName implements IUserAction {
+    private class FindByName extends BaseAction {
+        public FindByName(String actionName) {
+            super(actionName);
+        }
+
         /**
          * key for FindByName.
          *
@@ -272,22 +253,17 @@ class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             tracker.findByName(input.ask("Введите name заявки"));
         }
-
-        /**
-         * info for FindByName.
-         *
-         * @return info.
-         */
-        public String info() {
-            return String.format("%s. %s", this.key(), "Find by name");
-        }
     }
 }
 
 /**
  * Outer class just because required in task.
  */
-class Exiter implements IUserAction {
+class Exiter extends BaseAction {
+    Exiter(String actionName) {
+        super(actionName);
+    }
+
     @Override
 /**
  key for Outer.
@@ -306,14 +282,5 @@ class Exiter implements IUserAction {
     public void execute(Input input, Tracker tracker) {
         System.out.println("Выход из программы");
         StartUI.b = false;
-    }
-
-    @Override
-/**
- info for Outer.
- */
-    public String info() {
-        return String.format("%s. %s", this.key(), "Exit the program");
-
     }
 }
