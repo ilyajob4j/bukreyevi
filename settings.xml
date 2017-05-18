@@ -1,0 +1,14 @@
+<settings>
+    <proxies>
+        <proxy>
+            <id>example-proxy</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>bluecoat.media-saturn.com</host>
+            <port>80</port>
+            <username></username>
+            <password></password>
+            <nonProxyHosts>www.google.com|*.example.com</nonProxyHosts>
+        </proxy>
+    </proxies>
+</settings>

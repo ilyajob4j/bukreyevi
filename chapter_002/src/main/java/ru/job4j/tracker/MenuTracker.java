@@ -43,13 +43,13 @@ class MenuTracker {
      * fills array with classes.
      */
     void fillActions() {
-        this.actions[position++] = new MenuTracker.AddItem("Add Item");
-        this.actions[position++] = new ShowItems("Show Items");
-        this.actions[position++] = new UpdateItem("Update Item");
-        this.actions[position++] = new DeleteItem("Delete Item");
-        this.actions[position++] = new FindById("FindById");
-        this.actions[position++] = new FindByName("FindByName");
-        this.actions[position++] = new Exiter("Exit");
+        this.actions[position++] = new MenuTracker.AddItem("Add Item", 0);
+        this.actions[position++] = new ShowItems("Show Items", 1);
+        this.actions[position++] = new UpdateItem("Update Item", 2);
+        this.actions[position++] = new DeleteItem("Delete Item", 3);
+        this.actions[position++] = new FindById("FindById", 4);
+        this.actions[position++] = new FindByName("FindByName", 5);
+        this.actions[position++] = new Exiter("Exit", 6);
     }
 
     void addAction(IUserAction action) {
@@ -80,17 +80,8 @@ class MenuTracker {
      */
     private static class AddItem extends BaseAction {
 
-        AddItem(String actionName) {
-            super(actionName);
-        }
-
-        /**
-         * key for AddItem.
-         *
-         * @return 0
-         */
-        public int key() {
-            return 0;
+        AddItem(String actionName, int key) {
+            super(actionName, key);
         }
 
         /**
@@ -111,17 +102,8 @@ class MenuTracker {
      */
     private static class ShowItems extends BaseAction {
 
-        ShowItems(String name) {
-            super(name);
-        }
-
-        /**
-         * key for ShowItems.
-         *
-         * @return 1
-         */
-        public int key() {
-            return 1;
+        ShowItems(String name, int key) {
+            super(name, key);
         }
 
         /**
@@ -144,17 +126,8 @@ class MenuTracker {
      * class UpdateItem.
      */
     private static class UpdateItem extends BaseAction {
-        UpdateItem(String actionName) {
-            super(actionName);
-        }
-
-        /**
-         * key method.
-         *
-         * @return 2
-         */
-        public int key() {
-            return 2;
+        UpdateItem(String actionName, int key) {
+            super(actionName, key);
         }
 
         /**
@@ -175,17 +148,8 @@ class MenuTracker {
      * DeleteItem.
      */
     private class DeleteItem extends BaseAction {
-        public DeleteItem(String actionName) {
-            super(actionName);
-        }
-
-        /**
-         * key for DeleteItem.
-         *
-         * @return 3
-         */
-        public int key() {
-            return 3;
+        public DeleteItem(String actionName, int key) {
+            super(actionName, key);
         }
 
         /**
@@ -203,17 +167,8 @@ class MenuTracker {
      * class FindById.
      */
     private class FindById extends BaseAction {
-        public FindById(String actionName) {
-            super(actionName);
-        }
-
-        /**
-         * key for FindById.
-         *
-         * @return 4
-         */
-        public int key() {
-            return 4;
+        public FindById(String actionName, int key) {
+            super(actionName, key);
         }
 
         /**
@@ -231,17 +186,8 @@ class MenuTracker {
      * class FindByName.
      */
     private class FindByName extends BaseAction {
-        public FindByName(String actionName) {
-            super(actionName);
-        }
-
-        /**
-         * key for FindByName.
-         *
-         * @return 5.
-         */
-        public int key() {
-            return 5;
+        public FindByName(String actionName, int key) {
+            super(actionName, key);
         }
 
         /**
@@ -260,17 +206,8 @@ class MenuTracker {
  * Outer class just because required in task.
  */
 class Exiter extends BaseAction {
-    Exiter(String actionName) {
-        super(actionName);
-    }
-
-    @Override
-/**
- key for Outer.
- @return 6
- */
-    public int key() {
-        return 6;
+    Exiter(String actionName, int key) {
+        super(actionName, key);
     }
 
     @Override

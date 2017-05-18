@@ -5,13 +5,17 @@ package ru.job4j.tracker;
  */
 abstract class BaseAction implements IUserAction {
 
-   private String actionName;
+    private String actionName;
+    private int key;
 
-    BaseAction(String actionName) {
+    BaseAction(String actionName, int key) {
         this.actionName = actionName;
-            }
+        this.key = key;
+    }
 
-    public abstract int key();
+    public int key() {
+        return this.key;
+    };
 
     public abstract void execute(Input input, Tracker tracker);
 
